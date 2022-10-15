@@ -1,25 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import {useContext} from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import FoodApplicationContext from "./context/food-application";
+import OrderModal from "./components/OrderModal/OrderModal";
+import './assets/globalStyles/App.scss';
+
+
+const App = () => {
+    const {isModal, setIsModal} = useContext(FoodApplicationContext);
+    return (
+        <div>
+            <button onClick={() => setIsModal(true)}>1234</button>
+            {isModal ? <OrderModal/> : ''}
+        </div>
+    );
 }
 
 export default App;
