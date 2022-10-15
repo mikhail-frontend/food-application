@@ -1,4 +1,5 @@
-import styles from './MealItem.module.scss'
+import styles from './MealItem.module.scss';
+import Input from "../UI/Input/Input";
 const MealItem = ({ name, description, price }) => {
     return (
         <li className={styles.meal}>
@@ -7,6 +8,7 @@ const MealItem = ({ name, description, price }) => {
                 <div className={styles.description}>{description}</div>
                 <div className={styles.price}>{price}</div>
             </div>
+            <Input type="number" min={0}/>
         </li>
     )
 }

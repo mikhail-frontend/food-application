@@ -4,13 +4,21 @@ import styles from './AvailableMeals.module.scss'
 import Card from "../UI/Card/Card";
 import MealItem from "../MealItem/MealItem";
 
-const AvailableMeals = () => {
+const MealsList = () => {
     const {items} = useContext(FoodApplicationContext)
     return (
-        <Card className={styles.meals}>
+        <ul>
             {items.map(({id, name, description, price}) => {
                 return <MealItem description={description} name={name} price={price} key={id}/>
             })}
+        </ul>
+    )
+}
+
+const AvailableMeals = () => {
+    return (
+        <Card className={styles.meals}>
+            <MealsList/>
         </Card>
     )
 }
