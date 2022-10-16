@@ -19,7 +19,9 @@ export const FoodApplicationContextProvider = ({children}) => {
     const [selectedGoodsCount, setSelectedGoodsCount] = useState(0);
 
     useEffect(() => {
-        setSelectedGoodsCount(Object.values(model).reduce((acc, curr) => (acc+=curr), 0));
+        const newCount = Object.values(model).reduce((acc, curr) => (acc+=curr), 0);
+        if(!newCount) return;
+        setSelectedGoodsCount(newCount);
         setIsBump(true);
         const bumpTimeout = setTimeout(() => {
             setIsBump(false)
