@@ -13,6 +13,7 @@ const MealItemForm = ({onAddItem}) => {
     }
     const submitHandler = (event) => {
         event.preventDefault();
+        setCount(count => count + 1)
         onAddItem(count)
     }
     return (
