@@ -7,18 +7,30 @@ const FoodApplicationContext = createContext({
     setIsModal: () => {},
     selectedGoodsCount: 0,
     model: {'m0': 0},
+    //eslint-disable-new-line
     dispatchModel: (payload) => {},
+    isBump: false
 });
 
 export const FoodApplicationContextProvider = ({children}) => {
     const [isModal, setIsModal] = useState(false);
-    const [model, dispatchModel] = useReducer(modelReducer, buildModel(DummyMeals))
+    const [isBump, setIsBump] = useState(false);
+    const [model, dispatchModel] = useReducer(modelReducer, buildModel(DummyMeals));
+    const [selectedGoodsCount, setSelectedGoodsCount] = useState(0);
+
     useEffect(() => {
-        console.log(model)
-    }, [model])
+        setSelectedGoodsCount(Object.values(model).reduce((acc, curr) => (acc+=curr), 0));
+        setIsBump(true);
+        const bumpTimeout = setTimeout(() => {
+            setIsBump(false)
+        }, 300);
+        return () => {
+            clearTimeout(bumpTimeout)
+        }
+    }, [model]);
     return (
         <FoodApplicationContext.Provider
-            value={{items: DummyMeals, isModal, setIsModal, selectedGoodsCount: 0, model, dispatchModel}}>
+            value={{items: DummyMeals, isModal, setIsModal, selectedGoodsCount, model, dispatchModel, isBump}}>
             {children}
         </FoodApplicationContext.Provider>
     )

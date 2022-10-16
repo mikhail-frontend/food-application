@@ -6,13 +6,13 @@ import CartIcon from "./CartIcon";
 import styles from './HeaderCartButton.module.scss'
 
 const HeaderCartButton = () => {
-    const {isModal, setIsModal, selectedGoodsCount} = useContext(FoodApplicationContext);
+    const {isModal, setIsModal, selectedGoodsCount, isBump} = useContext(FoodApplicationContext);
     return (
         <>
-            <button onClick={() => setIsModal(true)} className={`${styles.button}`}>
+            <button onClick={() => setIsModal(true)} className={`${styles.button} ${isBump && styles.bump}`}>
                 <CartIcon className={styles.icon}/>
                 Your Cart
-                { !!selectedGoodsCount && <span className={styles.badge}>{selectedGoodsCount}</span>}
+                 <span className={styles.badge}>{selectedGoodsCount}</span>
             </button>
             {isModal ? <OrderModal/> : ''}
         </>

@@ -6,5 +6,5 @@ export const buildModel = (meals) => {
 }
 
 export const modelReducer = (state, {id, count}) => {
-    return {...state, [id]: count}
+    return {...state, [id]: state[id] ? state[id] + 1 : count}
 }
