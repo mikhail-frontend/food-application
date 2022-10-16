@@ -1,8 +1,8 @@
 import {useContext} from "react";
-import FoodApplicationContext from "../../context/food-application";
+import FoodApplicationContext from "../../../context/food-application";
 import styles from './AvailableMeals.module.scss'
-import Card from "../UI/Card/Card";
-import MealItem from "../MealItem/MealItem";
+import Card from "../../UI/Card/Card";
+import MealItem from "../../MealItem/MealItem";
 
 const MealsList = () => {
     const {model: {meals}} = useContext(FoodApplicationContext)

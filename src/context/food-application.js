@@ -1,6 +1,6 @@
 import {createContext, useState, useEffect, useReducer} from "react";
 import DummyMeals from "../helpers/dummy-meals";
-import {buildModel, modelReducer, scheme} from '../helpers/ordered-meals';
+import {buildSelectedListKeys, modelReducer, scheme} from '../helpers/ordered-meals';
 
 const FoodApplicationContext = createContext({
     isModal: false,
@@ -15,7 +15,7 @@ const FoodApplicationContext = createContext({
 export const FoodApplicationContextProvider = ({children}) => {
     const [isModal, setIsModal] = useState(false);
     const [isBump, setIsBump] = useState(false);
-    const [model, dispatchModel] = useReducer(modelReducer, buildModel(DummyMeals));
+    const [model, dispatchModel] = useReducer(modelReducer, buildSelectedListKeys(DummyMeals));
 
     useEffect(() => {
         if(!model.selectedGoodsCount) return;

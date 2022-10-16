@@ -6,7 +6,7 @@ export const scheme = {
     totalPrice: 0
 };
 
-export const buildModel = (meals) => {
+export const buildSelectedListKeys = (meals) => {
     const selectedListKeys = meals.reduce((acc, {id}) => {
         acc[id] = 0;
         return acc

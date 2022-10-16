@@ -7,7 +7,7 @@ const Input = forwardRef(({
                               label = '', value = '', changeHandler = () => {
     }, ...htmlProps  }, ref) => {
     const inputRef = useRef();
-    
+
     const onFocus = () => {
         inputRef.current?.focus();
     }
