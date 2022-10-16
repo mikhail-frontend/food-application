@@ -5,10 +5,10 @@ import Card from "../UI/Card/Card";
 import MealItem from "../MealItem/MealItem";
 
 const MealsList = () => {
-    const {items} = useContext(FoodApplicationContext)
+    const {model: {meals}} = useContext(FoodApplicationContext)
     return (
         <ul>
-            {items.map(({id, name, description, price}) => {
+            {meals.map(({id, name, description, price}) => {
                 return <MealItem description={description} name={name} price={price} key={id} id={id}/>
             })}
         </ul>

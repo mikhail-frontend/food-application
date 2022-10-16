@@ -2,13 +2,13 @@ import {createContext, useState, useEffect, useReducer} from "react";
 import DummyMeals from "../helpers/dummy-meals";
 import {buildModel, modelReducer, scheme} from '../helpers/ordered-meals';
 const FoodApplicationContext = createContext({
-    items: DummyMeals,
     isModal: false,
     setIsModal: () => {},
+    isBump: false,
     model: scheme,
     //eslint-disable-next-line
     dispatchModel: (payload) => {},
-    isBump: false
+
 });
 
 export const FoodApplicationContextProvider = ({children}) => {
@@ -30,7 +30,7 @@ export const FoodApplicationContextProvider = ({children}) => {
 
     return (
         <FoodApplicationContext.Provider
-            value={{items: DummyMeals, isModal, setIsModal,  model, dispatchModel, isBump}}>
+            value={{ isModal, setIsModal,  model, dispatchModel, isBump}}>
             {children}
         </FoodApplicationContext.Provider>
     )
