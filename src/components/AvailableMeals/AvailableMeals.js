@@ -9,11 +9,16 @@ const MealsList = () => {
     return (
         <ul>
             {meals.map(({id, name, description, price}) => {
-                return <MealItem description={description} name={name} price={price} key={id} id={id}/>
+                return <MealItem description={description}
+                                 name={name}
+                                 price={price}
+                                 key={id}
+                                 id={id}/>
             })}
         </ul>
     )
-}
+};
+
 
 const AvailableMeals = () => {
     return (

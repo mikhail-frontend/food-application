@@ -9,7 +9,10 @@ const OrderModalList = () => {
     return (
         <ul>
             {selectedItems.map(({id, amount, name, price}) => {
-                return <OrderModalItem key={id} price={price} name={name} amount={amount}/>
+                return <OrderModalItem key={id}
+                                       price={price}
+                                       name={name}
+                                       amount={amount}/>
             })}
         </ul>
     )
