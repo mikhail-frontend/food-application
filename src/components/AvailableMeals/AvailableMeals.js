@@ -9,7 +9,7 @@ const MealsList = () => {
     return (
         <ul>
             {items.map(({id, name, description, price}) => {
-                return <MealItem description={description} name={name} price={price} key={id}/>
+                return <MealItem description={description} name={name} price={price} key={id} id={id}/>
             })}
         </ul>
     )

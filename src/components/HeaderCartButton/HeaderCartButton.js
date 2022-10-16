@@ -12,7 +12,7 @@ const HeaderCartButton = () => {
             <button onClick={() => setIsModal(true)} className={`${styles.button}`}>
                 <CartIcon className={styles.icon}/>
                 Your Cart
-                <span className={styles.badge}>{selectedGoodsCount}</span>
+                { !!selectedGoodsCount && <span className={styles.badge}>{selectedGoodsCount}</span>}
             </button>
             {isModal ? <OrderModal/> : ''}
         </>

@@ -1,4 +1,4 @@
-import {createContext, useState} from "react";
+import {createContext, useState, useEffect} from "react";
 import DummyMeals from "./dummy-meals";
 const FoodApplicationContext = createContext({
     items: DummyMeals,
@@ -8,8 +8,11 @@ const FoodApplicationContext = createContext({
 });
 export const FoodApplicationContextProvider = ({children}) => {
     const [isModal, setIsModal] = useState(false);
+    useEffect(() => {
+
+    }, [])
     return (
-        <FoodApplicationContext.Provider value={{items: DummyMeals, isModal, setIsModal, selectedGoodsCount: 2}}>
+        <FoodApplicationContext.Provider value={{items: DummyMeals, isModal, setIsModal, selectedGoodsCount: 0}}>
             {children}
         </FoodApplicationContext.Provider>
     )
