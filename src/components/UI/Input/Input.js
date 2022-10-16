@@ -5,12 +5,12 @@ const Input = forwardRef(({
                               className = '',
                               id = '0',
                               label = '', value = '', changeHandler = () => {
-    }, ...htmlProps  }) => {
+    }, ...htmlProps  }, ref) => {
     const inputRef = useRef();
     const onFocus = () => {
         inputRef.current?.focus();
     }
-    useImperativeHandle(inputRef, {
+    useImperativeHandle(ref, {
         onFocus
     });
 
