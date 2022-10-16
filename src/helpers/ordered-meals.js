@@ -14,19 +14,32 @@ export const buildModel = (meals) => {
     return {...scheme, selectedListKeys, meals}
 };
 
-export const modelReducer = (state, {id, count}) => {
+export const modelReducer = (state, {id, count, action = 'plus'}) => {
     const {selectedListKeys, meals} = state;
 
-    const selectedKeys = Object.entries(selectedListKeys).filter(([, value]) => value).map(([key]) => key);
-    const selectedItems = meals.filter(({id}) => selectedKeys.includes(id)).map(item => ({...item, amount: selectedListKeys[item.id]}));
+    const updatedSelectedListKeys = {
+        ...selectedListKeys,
+        [id]: action === 'plus'
+            ? selectedListKeys[id] + count
+            : selectedListKeys[id] - count
+    };
 
-    const updatedList = {...selectedListKeys, [id]: selectedListKeys[id] ? selectedListKeys[id] + count : count};
-    const updatedSelectedGoodsCount = Object.values(updatedList).reduce((acc, curr) => (acc + curr), 0);
+    const selectedKeys = Object.entries(updatedSelectedListKeys).filter(([, value]) => value).map(([key]) => key);
+    const selectedItems = meals.filter(({id}) => selectedKeys.includes(id)).map(item => ({
+        ...item,
+        amount: updatedSelectedListKeys[item.id]
+    }));
+
+    const selectedGoodsCount = Object.values(updatedSelectedListKeys).reduce((acc, curr) => (acc + curr), 0);
+
+    const totalPrice = selectedItems.reduce((acc, {price, amount}) => (acc + price * amount), 0)
+
 
     return {
         ...state,
-        selectedListKeys: updatedList,
+        selectedListKeys: updatedSelectedListKeys,
         selectedItems,
-        selectedGoodsCount: updatedSelectedGoodsCount
+        selectedGoodsCount,
+        totalPrice
     };
 };

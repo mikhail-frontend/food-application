@@ -1,3 +1,9 @@
+@mixin hoverActive {
+  background-color: #5a1a01 !important;
+  border-color: #5a1a01 !important;
+  color: white !important;
+}
+
 .order-modal-items {
   list-style: none;
   margin: 0;
@@ -15,22 +21,30 @@
   margin: 1rem 0;
 }
 
+.button {
+  font: inherit;
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid #8a2b06;
+  padding: 0.5rem 2rem;
+  border-radius: 25px;
+  margin-left: 1rem;
+  font-size: 20px;
+  &:hover, &:active{
+    @include hoverActive
+  }
+}
+.close {
+  background-color: #fff !important;
+  color: #5a1a01 !important;
+  border-color: #5a1a01;
+  &:hover, &:active{
+    @include hoverActive
+  }
+}
 .actions {
   text-align: right;
-  button {
-    font: inherit;
-    cursor: pointer;
-    background-color: transparent;
-    border: 1px solid #8a2b06;
-    padding: 0.5rem 2rem;
-    border-radius: 25px;
-    margin-left: 1rem;
-    &:hover, &:active{
-      background-color: #5a1a01;
-      border-color: #5a1a01;
-      color: white;
-    }
-  }
+
 }
 
 .actions .button--alt {
@@ -40,4 +54,21 @@
 .actions .button {
   background-color: #8a2b06;
   color: white;
+}
+
+.no-data {
+  font-size: 2rem;
+  color: coral;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  button{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1rem;
+  }
 }

@@ -8,6 +8,7 @@ const FoodApplicationContext = createContext({
     isBump: false,
     model: scheme,
     dispatchModel: (payload) => {},
+    sendRequest: () => {}
 
 });
 
@@ -17,16 +18,22 @@ export const FoodApplicationContextProvider = ({children}) => {
     const [model, dispatchModel] = useReducer(modelReducer, buildModel(DummyMeals));
 
     useEffect(() => {
-        if(!model.selectedGoodsCount || isModal) return;
+        if(!model.selectedGoodsCount) return;
         setIsBump(true);
         const bumpTimeout = setTimeout(() => setIsBump(false), 310);
         return () =>  clearTimeout(bumpTimeout);
 
-    }, [model.selectedGoodsCount, isModal]);
+    }, [model.selectedGoodsCount]);
+
+    const sendRequest = () => {
+        const {selectedListKeys}  = model;
+        console.log(selectedListKeys);
+        return selectedListKeys;
+    }
 
     return (
         <FoodApplicationContext.Provider
-            value={{ isModal, setIsModal,  model, dispatchModel, isBump}}>
+            value={{ isModal, setIsModal, isBump, model, dispatchModel, sendRequest}}>
             {children}
         </FoodApplicationContext.Provider>
     )

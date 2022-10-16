@@ -1,5 +1,13 @@
 import styles from './OrderModaltem.module.scss'
-const OrderModalItem = ({price = 0, name = '', amount = 0, onCountChange = () => {}}) => {
+
+const OrderModalItem = ({
+                            price = 0,
+                            name = '',
+                            amount = 0,
+                            onCountChange = () => {},
+                            id = 'm0'
+                        }) =>
+{
     const fixedPrice = `$${price.toFixed(2)}`;
 
     return (
@@ -12,8 +20,8 @@ const OrderModalItem = ({price = 0, name = '', amount = 0, onCountChange = () =>
                 </div>
             </div>
             <div className={styles.actions}>
-                <button onClick={onCountChange}>−</button>
-                <button onClick={onCountChange}>+</button>
+                <button onClick={() => onCountChange(id, 'minus')}>−</button>
+                <button onClick={() => onCountChange(id, 'plus')}>+</button>
             </div>
         </li>
     );
