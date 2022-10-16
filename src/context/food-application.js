@@ -1,13 +1,12 @@
 import {createContext, useState, useEffect, useReducer} from "react";
 import DummyMeals from "../helpers/dummy-meals";
-import {buildModel, modelReducer} from '../helpers/ordered-meals';
+import {buildModel, modelReducer, scheme} from '../helpers/ordered-meals';
 const FoodApplicationContext = createContext({
     items: DummyMeals,
     isModal: false,
     setIsModal: () => {},
-    selectedGoodsCount: 0,
-    model: {'m0': 0},
-    //eslint-disable-new-line
+    model: scheme,
+    //eslint-disable-next-line
     dispatchModel: (payload) => {},
     isBump: false
 });
@@ -15,13 +14,11 @@ const FoodApplicationContext = createContext({
 export const FoodApplicationContextProvider = ({children}) => {
     const [isModal, setIsModal] = useState(false);
     const [isBump, setIsBump] = useState(false);
+    //eslint-disable-next-line
     const [model, dispatchModel] = useReducer(modelReducer, buildModel(DummyMeals));
-    const [selectedGoodsCount, setSelectedGoodsCount] = useState(0);
 
     useEffect(() => {
-        const newCount = Object.values(model).reduce((acc, curr) => (acc+=curr), 0);
-        if(!newCount) return;
-        setSelectedGoodsCount(newCount);
+        if(!model.selectedGoodsCount) return;
         setIsBump(true);
         const bumpTimeout = setTimeout(() => {
             setIsBump(false)
@@ -29,10 +26,11 @@ export const FoodApplicationContextProvider = ({children}) => {
         return () => {
             clearTimeout(bumpTimeout)
         }
-    }, [model]);
+    }, [model.selectedGoodsCount]);
+
     return (
         <FoodApplicationContext.Provider
-            value={{items: DummyMeals, isModal, setIsModal, selectedGoodsCount, model, dispatchModel, isBump}}>
+            value={{items: DummyMeals, isModal, setIsModal,  model, dispatchModel, isBump}}>
             {children}
         </FoodApplicationContext.Provider>
     )
