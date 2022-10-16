@@ -7,12 +7,13 @@ const Input = forwardRef(({
                               label = '', value = '', changeHandler = () => {
     }, ...htmlProps  }, ref) => {
     const inputRef = useRef();
+    
     const onFocus = () => {
         inputRef.current?.focus();
     }
-    useImperativeHandle(ref, {
+    useImperativeHandle(ref, () => ({
         onFocus
-    });
+    }));
 
     return (
         <div className={`${styles.input} ${className}`}>
