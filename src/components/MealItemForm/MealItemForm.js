@@ -21,6 +21,7 @@ const MealItemForm = ({onAddItem}) => {
                    placeholder="1"
                    label="Amount"
                    min={1}
+                   max={5}
                    changeHandler={changeHandler}
                    value={count}/>
             <button>+ Add</button>

@@ -6,11 +6,11 @@ import AvailableMeals from "./components/Layout/AvailableMeals/AvailableMeals";
 
 const App = () => {
     return (
-        <div className="food-order">
+        <>
             <Header/>
             <MealsSummary/>
             <AvailableMeals/>
-        </div>
+        </>
     );
 }
 

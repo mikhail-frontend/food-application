@@ -4,10 +4,10 @@ import {buildModel, modelReducer, scheme} from '../helpers/ordered-meals';
 
 const FoodApplicationContext = createContext({
     isModal: false,
-    setIsModal: () => {},
+    setIsModal: (value) => (value),
     isBump: false,
     model: scheme,
-    dispatchModel: (payload) => {},
+    dispatchModel: (payload) => payload,
     sendRequest: () => {}
 
 });
@@ -15,7 +15,7 @@ const FoodApplicationContext = createContext({
 export const FoodApplicationContextProvider = ({children}) => {
     const [isModal, setIsModal] = useState(false);
     const [isBump, setIsBump] = useState(false);
-    const [model, dispatchModel] = useReducer(modelReducer, buildModel(DummyMeals));
+    const [model, dispatchModel] = useReducer(modelReducer, buildModel(DummyMeals), () => buildModel(DummyMeals));
 
     useEffect(() => {
         if(!model.selectedGoodsCount) return;
@@ -31,9 +31,11 @@ export const FoodApplicationContextProvider = ({children}) => {
         return selectedListKeys;
     }
 
+    const context = { isModal, setIsModal, isBump, model, dispatchModel, sendRequest}
+
     return (
         <FoodApplicationContext.Provider
-            value={{ isModal, setIsModal, isBump, model, dispatchModel, sendRequest}}>
+            value={context}>
             {children}
         </FoodApplicationContext.Provider>
     )
