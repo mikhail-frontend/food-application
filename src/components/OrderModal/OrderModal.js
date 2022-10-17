@@ -1,6 +1,6 @@
 import {useContext} from "react";
-import FoodApplicationContext from "../../context/food-application";
-import styles from './OrderModal.module.scss'
+import FoodApplicationContext from "../../store/food-application";
+import styles from './OrderModal.module.scss';
 import Modal from "../UI/Modal/Modal";
 import OrderModalItem from "../OrderModalItem/OrderModalItem";
 import Card from "../UI/Card/Card";
@@ -13,7 +13,7 @@ const OrderModalList = () => {
     };
 
     return (
-        <ul>
+        <ul className={styles['order-modal-items']}>
             {selectedItems.map(({id, amount, name, price}) => {
                 return <OrderModalItem key={id}
                                        price={price}
@@ -40,10 +40,22 @@ const OrderModalContent = () => {
             <OrderModalList/>
             <div className={styles.total}> Total price: {totalPrice.toFixed(2)}$</div>
             <div className={styles.actions}>
-                <button className={`${styles.close} ${styles.button}`} onClick={() => setIsModal(false)}>Close</button>
+                <button className={`${styles.close} ${styles.button}`}
+                        onClick={() => setIsModal(false)}>
+                    Close
+                </button>
                 <button className={styles.button} onClick={orderFood}>Order</button>
             </div>
         </>
+    )
+}
+
+const NoData = ({setIsModal}) => {
+    return (
+        <Card className={styles['no-data']}>
+            Unfortunately, you did not order anything :( <br/>
+            <button className={styles.button} onClick={() => setIsModal(false)}>Order meal</button>
+        </Card>
     )
 }
 
@@ -53,12 +65,7 @@ const OrderModal = () => {
     return (
         <Modal onHideModal={() => setIsModal(false)}>
             {isExistSelected && <OrderModalContent/>}
-            {!isExistSelected &&
-                <Card className={styles['no-data']}>
-                    Unfortunately, you did not order anything :( <br/>
-                    <button className={styles.button} onClick={() => setIsModal(false)}>Order meal</button>
-                </Card>
-            }
+            {!isExistSelected && <NoData setIsModal={setIsModal()}/>}
         </Modal>
     )
 }

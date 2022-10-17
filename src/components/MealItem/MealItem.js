@@ -1,5 +1,5 @@
 import {useContext} from "react";
-import FoodApplicationContext from "../../context/food-application";
+import FoodApplicationContext from "../../store/food-application";
 import styles from './MealItem.module.scss';
 import MealItemForm from "../MealItemForm/MealItemForm";
 

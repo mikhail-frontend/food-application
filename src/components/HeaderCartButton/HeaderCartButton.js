@@ -1,12 +1,21 @@
-import {useContext} from "react";
+import {useContext, useState} from "react";
 
-import FoodApplicationContext from "../../context/food-application";
+import FoodApplicationContext from "../../store/food-application";
 import OrderModal from "../OrderModal/OrderModal";
 import CartIcon from "./CartIcon";
 import styles from './HeaderCartButton.module.scss'
+import {useEffect} from "react";
 
 const HeaderCartButton = () => {
-    const {isModal, setIsModal, model: {selectedGoodsCount}, isBump} = useContext(FoodApplicationContext);
+    const {isModal, setIsModal, model: {selectedGoodsCount}} = useContext(FoodApplicationContext);
+    const [isBump, setIsBump] = useState(false)
+
+    useEffect(() => {
+        if(!selectedGoodsCount) return;
+        setIsBump(true);
+        const bumpTimeout = setTimeout(() => setIsBump(false), 310);
+        return () =>  clearTimeout(bumpTimeout);
+    }, [selectedGoodsCount]);
     return (
         <>
             <button onClick={() => setIsModal(true)} className={`${styles.button} ${isBump && styles.bump}`}>

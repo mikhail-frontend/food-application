@@ -5,13 +5,14 @@ const OrderModalItem = ({
                             name = '',
                             amount = 0,
                             onCountChange = () => {},
-                            id = 'm0'
+                            id = 'm0',
+                            className = ''
                         }) =>
 {
     const fixedPrice = `$${price.toFixed(2)}`;
 
     return (
-        <li className={styles['order-modal-item']}>
+        <li className={`${styles['order-modal-item']} ${className}`}>
             <div>
                 <h2>{name}</h2>
                 <div className={styles.summary}>
