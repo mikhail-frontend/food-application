@@ -27,12 +27,15 @@ const OrderModalList = () => {
     )
 };
 
-const OrderModalContent = () => {
-    const {setIsModal, model: {totalPrice}, sendRequest} = useContext(FoodApplicationContext);
+const OrderModalContent = ({
+                               onSetIsModal = () => {
+                               }
+                           }) => {
+    const {model: {totalPrice}, sendRequest} = useContext(FoodApplicationContext);
 
-    const orderFood = () => {
-        setIsModal(false);
-        sendRequest()
+    const orderFood = async () => {
+        onSetIsModal(false);
+        await sendRequest();
     }
 
     return (
@@ -41,7 +44,7 @@ const OrderModalContent = () => {
             <div className={styles.total}> Total price: {totalPrice.toFixed(2)}$</div>
             <div className={styles.actions}>
                 <button className={`${styles.close} ${styles.button}`}
-                        onClick={() => setIsModal(false)}>
+                        onClick={() => onSetIsModal(false)}>
                     Close
                 </button>
                 <button className={styles.button} onClick={orderFood}>Order</button>
@@ -50,22 +53,25 @@ const OrderModalContent = () => {
     )
 }
 
-const NoData = ({setIsModal}) => {
+const NoData = ({
+                    onSetIsModal = () => {
+                    }
+                }) => {
     return (
         <Card className={styles['no-data']}>
             Unfortunately, you did not order anything :( <br/>
-            <button className={styles.button} onClick={() => setIsModal(false)}>Order meal</button>
+            <button className={styles.button} onClick={() => onSetIsModal(false)}>Order meal</button>
         </Card>
     )
 }
 
-const OrderModal = () => {
-    const {setIsModal, model: {selectedItems}} = useContext(FoodApplicationContext);
-    const isExistSelected = Boolean(selectedItems && Array.isArray(selectedItems) && selectedItems.length)
+const OrderModal = ({onSetIsModal}) => {
+    const {model: {selectedItems}} = useContext(FoodApplicationContext);
+    const isExistSelected = Boolean(selectedItems && Array.isArray(selectedItems) && selectedItems.length);
     return (
-        <Modal onHideModal={() => setIsModal(false)}>
-            {isExistSelected && <OrderModalContent/>}
-            {!isExistSelected && <NoData setIsModal={setIsModal()}/>}
+        <Modal onHideModal={() => onSetIsModal(false)}>
+            {isExistSelected && <OrderModalContent onSetIsModal={onSetIsModal}/>}
+            {!isExistSelected && <NoData onSetIsModal={onSetIsModal}/>}
         </Modal>
     )
 }

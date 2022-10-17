@@ -12,10 +12,10 @@ const ModalContent = ({onHideModal, children}) => {
     )
 }
 const Modal = ({children, onHideModal}) => {
-    const modalRoot = document.getElementById('modal-root')
+    const modalRoot = document.getElementById('modal-root');
     return (
         <>
-            {createPortal(<ModalContent  onHideModal={onHideModal}> {children} </ModalContent>, modalRoot )}
+            { createPortal(<ModalContent  onHideModal={onHideModal}> {children} </ModalContent>, modalRoot ) }
         </>
     )
 }
