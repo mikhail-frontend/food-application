@@ -5,9 +5,11 @@ import {FoodApplicationContextProvider} from "./store/food-application";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <FoodApplicationContextProvider>
-    <App />
-  </FoodApplicationContextProvider>
+    <React.StrictMode>
+        <FoodApplicationContextProvider>
+            <App/>
+        </FoodApplicationContextProvider>
+    </React.StrictMode>
 );
 
 
