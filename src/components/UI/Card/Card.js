@@ -1,3 +1,4 @@
+import React from "react";
 import styles from './Card.module.scss'
 const Card = ({children, className}) => {
     return (
@@ -6,4 +7,4 @@ const Card = ({children, className}) => {
         </div>
     )
 }
-export default Card;
+export default React.memo(Card);

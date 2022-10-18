@@ -1,3 +1,4 @@
+import React from "react";
 import styles from './MealsSummary.module.scss'
 const MealsSummary = () => {
     return (
@@ -15,4 +16,4 @@ const MealsSummary = () => {
     );
 };
 
-export default MealsSummary;
+export default React.memo(MealsSummary);

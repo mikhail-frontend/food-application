@@ -4,7 +4,6 @@ import {useState} from "react";
 
 const MealItemForm = ({onAddItem}) => {
     const [count, setCount] = useState(1);
-
     const changeHandler = (value) => {
         if(Number(value) < 1) {
             setCount(() => 1)

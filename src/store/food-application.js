@@ -1,4 +1,4 @@
-import { createContext,  useReducer } from "react";
+import { createContext,  useReducer, useCallback } from "react";
 import DummyMeals from "../helpers/dummy-meals";
 import {buildModel, modelReducer, scheme} from '../helpers/ordered-meals';
 
@@ -10,12 +10,13 @@ const FoodApplicationContext = createContext({
 
 export const FoodApplicationContextProvider = ({children}) => {
     const [model, dispatchModel] = useReducer(modelReducer, buildModel(DummyMeals), () => buildModel(DummyMeals));
+    const {selectedListKeys}  = model;
 
-    const sendRequest = async () => {
-        const {selectedListKeys}  = model;
-        await console.log(selectedListKeys);
+    const sendRequest =  useCallback(() => {
+
+        console.log(selectedListKeys);
         return selectedListKeys;
-    };
+    }, [selectedListKeys]);
 
     const context = {  model, dispatchModel, sendRequest}
 

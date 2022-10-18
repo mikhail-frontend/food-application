@@ -1,3 +1,4 @@
+import React from "react";
 const CartIcon = ({className}) => {
     return (
         <svg
@@ -11,4 +12,4 @@ const CartIcon = ({className}) => {
     );
 };
 
-export default CartIcon;
+export default React.memo(CartIcon);
