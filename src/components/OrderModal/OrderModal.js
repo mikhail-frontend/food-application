@@ -2,7 +2,7 @@ import {useContext} from "react";
 import FoodApplicationContext from "../../store/food-application";
 import styles from './OrderModal.module.scss';
 import Modal from "../UI/Modal/Modal";
-import OrderModalItem from "../OrderModalItem/OrderModalItem";
+import OrderModalItem from "./OrderModalItem/OrderModalItem";
 import Card from "../UI/Card/Card";
 
 const OrderModalList = () => {

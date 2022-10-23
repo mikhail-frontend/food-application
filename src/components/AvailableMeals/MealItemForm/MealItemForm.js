@@ -1,5 +1,5 @@
 import styles from './MealItemForm.module.scss'
-import Input from "../UI/Input/Input";
+import Input from "../../UI/Input/Input";
 import {useState} from "react";
 
 const MealItemForm = ({onAddItem}) => {

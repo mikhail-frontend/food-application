@@ -1,5 +1,5 @@
 import styles from './Header.module.scss'
-import HeaderCartButton from "../../HeaderCartButton/HeaderCartButton";
+import HeaderCartButton from "./HeaderCartButton/HeaderCartButton";
 import MainImage from '../../../assets/img/meals.jpeg'
 const Header = () => {
     return (
