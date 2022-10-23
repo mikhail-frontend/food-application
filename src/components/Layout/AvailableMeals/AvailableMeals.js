@@ -8,7 +8,7 @@ import ErrorBoundary from '../../ErrorBoundaries/ErrorBoundary'
 
 
 const MealsList = () => {
-    const {model: {meals}, error} = useContext(FoodApplicationContext);
+    const {model: {meals}} = useContext(FoodApplicationContext);
     return (
         <ul>
             {meals.map(({id, name, description, price}) => {
