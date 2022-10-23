@@ -1,8 +1,10 @@
 import {useContext} from "react";
 import FoodApplicationContext from "../../../store/food-application";
-import styles from './AvailableMeals.module.scss'
 import Card from "../../UI/Card/Card";
 import MealItem from "../../MealItem/MealItem";
+import Loader from "../../UI/Loader/Loader";
+import styles from './AvailableMeals.module.scss'
+
 
 const MealsList = () => {
     const {model: {meals}} = useContext(FoodApplicationContext);
@@ -21,9 +23,11 @@ const MealsList = () => {
 
 
 const AvailableMeals = () => {
+    const {loading} = useContext(FoodApplicationContext);
     return (
         <Card className={styles.meals}>
-            <MealsList/>
+            {loading && <Loader/>}
+            {!loading && <MealsList/>}
         </Card>
     )
 }

@@ -1,40 +1,32 @@
-$base: #263238;
-$lite:  #FFF;
+$base: #282828;
 $brand: #FF3D00;
 $size: 48px;
 
-*, *:after, *:before {
-  box-sizing: border-box;
-}
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: $base;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: $brand;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #fff;
-}
-
-
-
-
-.loader-113{
-  color: $lite;
+.section {
+  min-width: 200px;
+  width: 33.33%;
+  height: 200px;
+  padding: 10px;
   position: relative;
-  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ccc;
+  cursor: pointer;
+  transition: 0.3s linear;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+.loader{
+  color: #282828;
+  position: relative;
   font-size: $size;
   letter-spacing: 4px;
+  font-family: Arial, Helvetica, sans-serif;
   &::before {
     content: '';
     position: absolute;
@@ -43,7 +35,7 @@ $size: 48px;
     height: 28px;
     width: 5.15px;
     background: currentColor;
-    animation: animloader113L 1s linear infinite alternate;
+    animation: animloaderL 1s linear infinite alternate;
   }
   &::after {
     content: '';
@@ -54,7 +46,7 @@ $size: 48px;
     top: 2px;
     border-radius: 50%;
     background: red;
-    animation: animloader113 1s linear infinite alternate;
+    animation: animloader 1s linear infinite alternate;
   }
 }
 
@@ -63,7 +55,7 @@ $size: 48px;
 
 
 
-@keyframes animloader113 {
+@keyframes animloader {
   0%  { transform: translate(0px, 0px) scaleX(1) }
   14%  { transform: translate(-12px, -16px) scaleX(1.05) }
   28%  { transform: translate(-27px, -28px) scaleX(1.07) }
@@ -74,7 +66,7 @@ $size: 48px;
   100%  { transform: translate(-125px, -9px) scaleX(1) }
 }
 
-@keyframes animloader113L {
+@keyframes animloaderL {
   0%   { box-shadow: 0 -6px, -122.9px -8px}
   25%, 75%  { box-shadow: 0 0, -122.9px -8px}
   100%   { box-shadow: 0 0, -122.9px -16px}
