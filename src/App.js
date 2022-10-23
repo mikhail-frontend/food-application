@@ -1,17 +1,17 @@
-import './assets/globalStyles/App.scss';
+import "./assets/globalStyles/App.scss";
 
 import Header from "./components/Layout/Header/Header";
 import MealsSummary from "./components/Layout/MealsSummary/MealsSummury";
 import AvailableMeals from "./components/AvailableMeals/AvailableMeals";
 
 const App = () => {
-    return (
-        <>
-            <Header/>
-            <MealsSummary/>
-            <AvailableMeals/>
-        </>
-    );
-}
+  return (
+    <>
+      <Header />
+      <MealsSummary />
+      <AvailableMeals />
+    </>
+  );
+};
 
 export default App;
