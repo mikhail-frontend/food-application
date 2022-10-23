@@ -15,7 +15,10 @@ export const buildModel = (meals) => {
     return {...scheme, selectedListKeys, meals}
 };
 
-export const modelReducer = (state, {id, count, action = 'plus'}) => {
+export const modelReducer = (state, {id = '0', count = 0, action = 'plus', mealsToSet = []}) => {
+    if(action === 'SET_MEALS') {
+        return {...state, meals: mealsToSet};
+    }
     const {selectedListKeys: selectedListKeysOld, meals} = state;
 
     const selectedListKeys = {
