@@ -1,7 +1,6 @@
 import { createContext,  useReducer, useCallback, useEffect } from "react";
-// import DummyMeals from "../helpers/dummy-meals";
 import {buildModel, modelReducer, scheme} from '../helpers/ordered-meals';
-import {getMeals} from "../API";
+import {getMeals } from "../API";
 import useMeals from "../hooks/use-meals";
 
 
@@ -18,6 +17,7 @@ export const FoodApplicationContextProvider = ({children}) => {
     const getData = useCallback(async () => (await getMeals()), [])
     const { fetchMeals, error, loading } = useMeals(getData);
 
+
     useEffect(() => {
         fetchMeals().then((meals) => {
             dispatchModel({
@@ -28,8 +28,6 @@ export const FoodApplicationContextProvider = ({children}) => {
     }, [fetchMeals]);
 
     const {selectedListKeys}  = model;
-
-
 
     const sendRequest =  useCallback(() => {
         console.log(selectedListKeys);

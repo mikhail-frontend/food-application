@@ -26,7 +26,7 @@ const AvailableMeals = () => {
     const {loading} = useContext(FoodApplicationContext);
     return (
         <Card className={styles.meals}>
-            {loading && <Loader/>}
+            { loading && <Loader/> }
             {!loading && <MealsList/>}
         </Card>
     )
