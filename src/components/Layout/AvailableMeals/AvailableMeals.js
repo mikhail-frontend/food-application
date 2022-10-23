@@ -4,10 +4,11 @@ import Card from "../../UI/Card/Card";
 import MealItem from "../../MealItem/MealItem";
 import Loader from "../../UI/Loader/Loader";
 import styles from './AvailableMeals.module.scss'
+import ErrorBoundary from '../../ErrorBoundaries/ErrorBoundary'
 
 
 const MealsList = () => {
-    const {model: {meals}} = useContext(FoodApplicationContext);
+    const {model: {meals}, error} = useContext(FoodApplicationContext);
     return (
         <ul>
             {meals.map(({id, name, description, price}) => {
@@ -23,11 +24,15 @@ const MealsList = () => {
 
 
 const AvailableMeals = () => {
-    const {loading} = useContext(FoodApplicationContext);
+    const {loading, error} = useContext(FoodApplicationContext);
     return (
         <Card className={styles.meals}>
-            { loading && <Loader/> }
-            {!loading && <MealsList/>}
+            <ErrorBoundary>
+                { loading && !error && <Loader/> }
+                { !loading && !error && <MealsList/> }
+                { error && <Card><p style={{color: "red", fontSize: '2rem'}}>  {error ? error : 'Something went wrong'} </p></Card>}
+            </ErrorBoundary>
+
         </Card>
     )
 }

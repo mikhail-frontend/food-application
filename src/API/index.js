@@ -1,5 +1,10 @@
 export const getMeals = async () => {
-    const response = await fetch('https://food-order-19eee-default-rtdb.firebaseio.com/meals.json');
+    const response = await fetch('https://food-order-19eee-default-rtdb.firebaseio.com/meals.json', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
     if(!response.ok) {
         throw new Error('Something went wrong!')
     }
