@@ -8,13 +8,15 @@ import useMeals from "../hooks/use-meals";
 const FoodApplicationContext = createContext({
     model: scheme,
     dispatchModel: (payload) => payload,
-    sendRequest: () => {}
+    sendRequest: () => {},
+    error: null,
+    loading: false
 });
 
 export const FoodApplicationContextProvider = ({children}) => {
     const [model, dispatchModel] = useReducer(modelReducer, buildModel([]), () => buildModel([]));
     const getData = useCallback(async () => (await getMeals()), [])
-    const { fetchMeals } = useMeals(getData);
+    const { fetchMeals, error, loading } = useMeals(getData);
 
     useEffect(() => {
         fetchMeals().then((meals) => {
@@ -34,7 +36,7 @@ export const FoodApplicationContextProvider = ({children}) => {
         return selectedListKeys;
     }, [selectedListKeys]);
 
-    const context = {  model, dispatchModel, sendRequest}
+    const context = {  model, dispatchModel, sendRequest, error, loading }
 
     return (
         <FoodApplicationContext.Provider
