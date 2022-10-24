@@ -29,7 +29,7 @@ export const FoodApplicationContextProvider = ({ children }) => {
           : Object.entries(meals).map(([key, value]) => ({ ...value, id: key }))
       });
     })();
-  }, [fetchMeals]);
+  }, []);
 
   const { selectedListKeys } = model;
 
