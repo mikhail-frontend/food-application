@@ -32,4 +32,4 @@ const ModalForm = forwardRef((props, ref) => {
   );
 });
 
-export default React.memo(ModalForm);
+export default ModalForm;

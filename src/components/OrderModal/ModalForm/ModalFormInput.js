@@ -1,13 +1,20 @@
 import React from 'react';
 import './ModalFormInput.scss';
 
-const ModalFormInput = (props) => {
-  const { label, type, name, handleChange, errorMessage, isValid, value } = props;
-
+const ModalFormInput = ({
+  label = '',
+  type = 'text',
+  name = 'name',
+  handleChange = () => {},
+  errorMessage = '',
+  isValid = true,
+  value = '',
+  ...htmlProps
+}) => {
   return (
     <div className="inputContainer">
-      <label>{label}</label>
-      <input type={type} name={name} value={value} onChange={handleChange} />
+      {label && <label>{label}</label>}
+      <input type={type} name={name} value={value} onChange={handleChange} {...htmlProps}/>
       {errorMessage && !isValid && <span className="error">{errorMessage}</span>}
     </div>
   );
