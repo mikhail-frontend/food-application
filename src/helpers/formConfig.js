@@ -35,7 +35,6 @@ function createFormFieldConfig(label, name, type, defaultValue = '') {
   };
 }
 
-
 export const signupForm = {
   name: {
     ...createFormFieldConfig('Full Name', 'name', 'text'),

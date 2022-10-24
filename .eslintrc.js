@@ -50,7 +50,7 @@ module.exports = {
       }
     ],
     'object-curly-newline': 'off',
-    quotes: ['warn', 'single'],
+    quotes: 'off',
     'arrow-spacing': ['warn'],
     yoda: ['warn', 'never']
   }

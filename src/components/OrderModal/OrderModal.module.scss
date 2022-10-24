@@ -54,6 +54,10 @@
 .actions .button {
   background-color: #8a2b06;
   color: white;
+  &:disabled{
+    background-color: #807f7f;
+    cursor: not-allowed;
+  }
 }
 
 .no-data {

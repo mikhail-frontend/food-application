@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 
-function useForm(formObj) {
+const useForm = (formObj) => {
   const [form, setForm] = useState(formObj);
 
   function renderFormInputs() {
@@ -59,10 +59,9 @@ function useForm(formObj) {
   const isFormValid = useCallback(() => {
     let isValid = true;
     const arr = Object.values(form);
-    console.log(form);
 
     for (let i = 0; i < arr.length; i++) {
-      if (!arr[i].valid) {
+      if (!arr[i].valid && arr[i].validationRules?.length) {
         isValid = false;
         break;
       }
@@ -71,7 +70,17 @@ function useForm(formObj) {
     return isValid;
   }, [form]);
 
-  return { renderFormInputs, isFormValid };
-}
+  const getFormValues = useCallback(() => {
+    const formEntries = Object.entries(form);
+    return formEntries.reduce((acc, [key, valueObj]) => {
+      if (valueObj && valueObj.value) {
+        acc[key] = valueObj.value;
+      }
+      return acc;
+    }, {});
+  }, [form]);
+
+  return { renderFormInputs, isFormValid, getFormValues };
+};
 
 export default useForm;

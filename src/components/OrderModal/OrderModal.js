@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useRef, useState } from 'react';
 import FoodApplicationContext from '../../store/food-application';
 import styles from './OrderModal.module.scss';
 import Modal from '../UI/Modal/Modal';
@@ -17,44 +17,54 @@ const OrderModalList = () => {
   };
 
   return (
-      <ul className={styles['order-modal-items']}>
-        <ModalForm />
-        {selectedItems.map(({ id, amount, name, price }) => {
-          return (
-            <OrderModalItem
-              key={id}
-              price={price}
-              name={name}
-              amount={amount}
-              id={id}
-              onCountChange={onCountChange}
-            />
-          );
-        })}
-      </ul>
+    <ul className={styles['order-modal-items']}>
+      {selectedItems.map(({ id, amount, name, price }) => {
+        return (
+          <OrderModalItem
+            key={id}
+            price={price}
+            name={name}
+            amount={amount}
+            id={id}
+            onCountChange={onCountChange}
+          />
+        );
+      })}
+    </ul>
   );
 };
 
 const OrderModalContent = ({ onSetIsModal = () => {} }) => {
   const {
     model: { totalPrice },
-    sendRequest
+    sendRequest,
+    isFormFilled: isButtonEnabled
   } = useContext(FoodApplicationContext);
+  const [isConfirmed, setIsConformed] = useState(false);
+  const formRef = useRef();
 
   const orderFood = async () => {
-    onSetIsModal(false);
+    const values = formRef.current && formRef.current?.onSubmit  ?formRef.current.onSubmit() : null;
+    if(!values) {
+      //
+    }
     await sendRequest();
   };
 
   return (
     <>
-      <OrderModalList />
+      {isConfirmed ? <ModalForm ref={formRef} /> : ''}
+      {!isConfirmed ? <OrderModalList /> : ''}
       <div className={styles.total}> Total price: {totalPrice.toFixed(2)}$</div>
       <div className={styles.actions}>
         <button className={`${styles.close} ${styles.button}`} onClick={() => onSetIsModal(false)}>
           Close
         </button>
-        <button className={styles.button} onClick={orderFood}>
+        <button
+          className={styles.button}
+          disabled={!isConfirmed ? false : !isButtonEnabled}
+          onClick={() => (!isConfirmed ? setIsConformed(() => true) : orderFood())}
+        >
           Order
         </button>
       </div>

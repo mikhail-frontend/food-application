@@ -1,4 +1,4 @@
-import { createContext, useReducer, useCallback, useEffect } from 'react';
+import { createContext, useReducer, useCallback, useEffect, useState } from "react";
 import { buildModel, modelReducer, scheme } from '../helpers/ordered-meals';
 import { getMeals } from '../API';
 import useMeals from '../hooks/use-meals';
@@ -8,13 +8,16 @@ const FoodApplicationContext = createContext({
   dispatchModel: (payload) => payload,
   sendRequest: () => {},
   error: null,
-  loading: false
+  loading: false,
+  isFormFilled: false,
+  setIsFormFilled: () => {}
 });
 
 export const FoodApplicationContextProvider = ({ children }) => {
   const [model, dispatchModel] = useReducer(modelReducer, buildModel([]), () => buildModel([]));
   const getData = useCallback(async () => await getMeals(), []);
   const { fetchMeals, error, loading } = useMeals(getData);
+  const [isFormFilled, setIsFormFilled] = useState(false)
 
   useEffect(() => {
     fetchMeals().then((meals) => {
@@ -34,7 +37,7 @@ export const FoodApplicationContextProvider = ({ children }) => {
     return selectedListKeys;
   }, [selectedListKeys]);
 
-  const context = { model, dispatchModel, sendRequest, error, loading };
+  const context = { model, dispatchModel, sendRequest, error, loading, isFormFilled, setIsFormFilled };
 
   return (
     <FoodApplicationContext.Provider value={context}>{children}</FoodApplicationContext.Provider>
