@@ -1,4 +1,4 @@
-import { createContext, useReducer, useCallback, useEffect, useState } from "react";
+import { createContext, useReducer, useCallback, useEffect, useState } from 'react';
 import { buildModel, modelReducer, scheme } from '../helpers/ordered-meals';
 import { getMeals } from '../API';
 import useMeals from '../hooks/use-meals';
@@ -6,7 +6,7 @@ import useMeals from '../hooks/use-meals';
 const FoodApplicationContext = createContext({
   model: scheme,
   dispatchModel: (payload) => payload,
-  sendRequest: () => {},
+  sendRequest: (values) => values,
   error: null,
   loading: false,
   isFormFilled: false,
@@ -17,7 +17,7 @@ export const FoodApplicationContextProvider = ({ children }) => {
   const [model, dispatchModel] = useReducer(modelReducer, buildModel([]), () => buildModel([]));
   const getData = useCallback(async () => await getMeals(), []);
   const { fetchMeals, error, loading } = useMeals(getData);
-  const [isFormFilled, setIsFormFilled] = useState(false)
+  const [isFormFilled, setIsFormFilled] = useState(false);
 
   useEffect(() => {
     fetchMeals().then((meals) => {
@@ -32,12 +32,51 @@ export const FoodApplicationContextProvider = ({ children }) => {
 
   const { selectedListKeys } = model;
 
-  const sendRequest = useCallback(() => {
-    console.log(selectedListKeys);
-    return selectedListKeys;
-  }, [selectedListKeys]);
+  const sendRequest = useCallback(
+    async (values) => {
+      const order = Object.entries(selectedListKeys)
+        .filter(([, value]) => value)
+        .reduce((acc, [key, value]) => {
+          acc[key] = value;
+          return acc;
+        }, {});
+      const personalData = values;
+      const response = await fetch('https://httpbin.org/post', {
+        method: 'POST',
+        body: JSON.stringify({
+          order,
+          personalData
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      const responseData = await response.json();
+      setTimeout(() => {
+        dispatchModel({
+          action: 'SET_MEALS',
+          mealsToSet: model.meals
+        });
+      }, 2520)
 
-  const context = { model, dispatchModel, sendRequest, error, loading, isFormFilled, setIsFormFilled };
+      return {
+        order,
+        personalData,
+        responseData: JSON.parse(responseData.data)
+      };
+    },
+    [selectedListKeys]
+  );
+
+  const context = {
+    model,
+    dispatchModel,
+    sendRequest,
+    error,
+    loading,
+    isFormFilled,
+    setIsFormFilled
+  };
 
   return (
     <FoodApplicationContext.Provider value={context}>{children}</FoodApplicationContext.Provider>

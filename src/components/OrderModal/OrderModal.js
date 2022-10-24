@@ -41,32 +41,48 @@ const OrderModalContent = ({ onSetIsModal = () => {} }) => {
     isFormFilled: isButtonEnabled
   } = useContext(FoodApplicationContext);
   const [isConfirmed, setIsConformed] = useState(false);
+  const [isSent, setIsSent] = useState(false);
+  const [error, setError] = useState(null);
+  const [userName, setUserName] = useState(``);
   const formRef = useRef();
 
   const orderFood = async () => {
-    const values = formRef.current && formRef.current?.onSubmit  ?formRef.current.onSubmit() : null;
-    if(!values) {
-      //
+    const values = formRef.current && formRef.current?.onSubmit ? formRef.current.onSubmit() : null;
+    if (!values) return;
+    try {
+      await sendRequest(values);
+      setUserName(() => values.name);
+    } catch (e) {
+      setError(e.message || 'Something went wrong');
     }
-    await sendRequest();
+    setIsSent(true);
+    setTimeout(() => onSetIsModal(false), 2500)
   };
+
+  const text = <h1 style={{ color: 'red' }}>Thank you, {userName}, your order will come soon </h1>;
 
   return (
     <>
-      {isConfirmed ? <ModalForm ref={formRef} /> : ''}
-      {!isConfirmed ? <OrderModalList /> : ''}
+      {error && <Card>{error}</Card>}
+      {!error && !isSent && isConfirmed ? <ModalForm ref={formRef} /> : ''}
+      {!error && !isSent && !isConfirmed ? <OrderModalList /> : ''}
+      {!error && isSent && <Card>{text}</Card>}
       <div className={styles.total}> Total price: {totalPrice.toFixed(2)}$</div>
       <div className={styles.actions}>
         <button className={`${styles.close} ${styles.button}`} onClick={() => onSetIsModal(false)}>
           Close
         </button>
-        <button
-          className={styles.button}
-          disabled={!isConfirmed ? false : !isButtonEnabled}
-          onClick={() => (!isConfirmed ? setIsConformed(() => true) : orderFood())}
-        >
-          Order
-        </button>
+        {!isSent ? (
+          <button
+            className={styles.button}
+            disabled={!isConfirmed ? false : !isButtonEnabled}
+            onClick={() => (!isConfirmed ? setIsConformed(() => true) : orderFood())}
+          >
+            Order
+          </button>
+        ) : (
+          ''
+        )}
       </div>
     </>
   );

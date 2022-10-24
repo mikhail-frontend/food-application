@@ -8,14 +8,14 @@ import FoodApplicationContext from '../../../store/food-application';
 // eslint-disable-next-line react/display-name
 const ModalForm = forwardRef((props, ref) => {
   const { renderFormInputs, isFormValid, getFormValues } = useForm(signupForm);
-  const  { setIsFormFilled } = useContext(FoodApplicationContext);
+  const { setIsFormFilled } = useContext(FoodApplicationContext);
 
   useEffect(() => {
-    setIsFormFilled(isFormValid())
-  }, [isFormValid()])
+    setIsFormFilled(isFormValid());
+  }, [isFormValid()]);
 
   const submitHandler = (event) => {
-    event.preventDefault();
+    event?.preventDefault();
     if (!isFormValid()) return;
     return getFormValues();
   };

@@ -1,14 +1,13 @@
-import { useState, useCallback } from 'react';
+import { useCallback, useState } from 'react';
 
 const useForm = (formObj) => {
   const [form, setForm] = useState(formObj);
 
-  function renderFormInputs() {
-    return Object.values(form).map((inputObj) => {
+  const renderFormInputs = () =>
+    Object.values(form).map((inputObj) => {
       const { value, label, errorMessage, valid, renderInput } = inputObj;
       return renderInput(onInputChange, value, valid, errorMessage, label);
     });
-  }
 
   const isInputFieldValid = useCallback(
     (inputField) => {
