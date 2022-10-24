@@ -17,20 +17,21 @@ const OrderModalList = () => {
   };
 
   return (
-    <ul className={styles['order-modal-items']}>
-      {selectedItems.map(({ id, amount, name, price }) => {
-        return (
-          <OrderModalItem
-            key={id}
-            price={price}
-            name={name}
-            amount={amount}
-            id={id}
-            onCountChange={onCountChange}
-          />
-        );
-      })}
-    </ul>
+      <ul className={styles['order-modal-items']}>
+        <ModalForm />
+        {selectedItems.map(({ id, amount, name, price }) => {
+          return (
+            <OrderModalItem
+              key={id}
+              price={price}
+              name={name}
+              amount={amount}
+              id={id}
+              onCountChange={onCountChange}
+            />
+          );
+        })}
+      </ul>
   );
 };
 
@@ -81,7 +82,6 @@ const OrderModal = ({ onSetIsModal }) => {
   );
   return (
     <Modal onHideModal={() => onSetIsModal(false)}>
-      <ModalForm />
       {isExistSelected && <OrderModalContent onSetIsModal={onSetIsModal} />}
       {!isExistSelected && <NoData onSetIsModal={onSetIsModal} />}
     </Modal>

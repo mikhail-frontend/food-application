@@ -7,8 +7,7 @@ const ModalForm = () => {
   const { renderFormInputs, isFormValid } = useForm(signupForm);
   return (
     <form className={styles.signupForm}>
-      <h1>Sign Up</h1>
-      {/*{renderFormInputs()}*/}
+      {renderFormInputs()}
       <button className={styles.button} type="submit" disabled={!isFormValid()}>
         Submit
       </button>
@@ -16,4 +15,4 @@ const ModalForm = () => {
   );
 };
 
-export default ModalForm;
+export default React.memo(ModalForm);

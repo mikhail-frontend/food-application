@@ -1,7 +1,7 @@
 import React from 'react';
-import Input from '../components/UI/Input/Input';
+import ModalFormInput from '../components/OrderModal/ModalForm/ModalFormInput';
 
-import { requiredRule, minLengthRule, maxLengthRule, passwordMatchRule } from './validations';
+import { requiredRule, minLengthRule, maxLengthRule } from './validations';
 
 /**
  * creates and returns object representation of form field
@@ -15,7 +15,7 @@ function createFormFieldConfig(label, name, type, defaultValue = '') {
   return {
     renderInput: (handleChange, value, isValid, error, key) => {
       return (
-        <Input
+        <ModalFormInput
           key={key}
           name={name}
           type={type}
@@ -35,7 +35,7 @@ function createFormFieldConfig(label, name, type, defaultValue = '') {
   };
 }
 
-// object representation of signup form
+
 export const signupForm = {
   name: {
     ...createFormFieldConfig('Full Name', 'name', 'text'),
@@ -45,16 +45,8 @@ export const signupForm = {
     ...createFormFieldConfig('Email', 'email', 'email'),
     validationRules: [requiredRule('email'), minLengthRule('email', 10), maxLengthRule('email', 25)]
   },
-  password: {
-    ...createFormFieldConfig('Password', 'password', 'password'),
-    validationRules: [
-      requiredRule('password'),
-      minLengthRule('password', 8),
-      maxLengthRule('password', 20)
-    ]
-  },
-  confirmPassword: {
-    ...createFormFieldConfig('Confirm Password', 'confirmPassword', 'password'),
-    validationRules: [passwordMatchRule()]
+  message: {
+    ...createFormFieldConfig('Your extra-wishes', 'message', 'text'),
+    validationRules: []
   }
 };

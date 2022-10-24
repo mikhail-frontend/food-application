@@ -59,6 +59,7 @@ function useForm(formObj) {
   const isFormValid = useCallback(() => {
     let isValid = true;
     const arr = Object.values(form);
+    console.log(form);
 
     for (let i = 0; i < arr.length; i++) {
       if (!arr[i].valid) {
