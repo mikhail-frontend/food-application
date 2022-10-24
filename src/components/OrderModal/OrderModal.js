@@ -43,7 +43,7 @@ const OrderModalContent = ({ onSetIsModal = () => {} }) => {
   const [isConfirmed, setIsConformed] = useState(false);
   const [isSent, setIsSent] = useState(false);
   const [error, setError] = useState(null);
-  const [userName, setUserName] = useState(``);
+  const [userName, setUserName] = useState('');
   const formRef = useRef();
 
   const orderFood = async () => {
