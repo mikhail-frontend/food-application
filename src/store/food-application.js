@@ -1,4 +1,4 @@
-import { createContext, useReducer, useCallback, useEffect, useState } from 'react';
+import { createContext, useCallback, useEffect, useReducer, useState } from 'react';
 import { buildModel, modelReducer, scheme } from '../helpers/ordered-meals';
 import { getMeals } from '../API';
 import useMeals from '../hooks/use-meals';
@@ -20,14 +20,15 @@ export const FoodApplicationContextProvider = ({ children }) => {
   const [isFormFilled, setIsFormFilled] = useState(false);
 
   useEffect(() => {
-    fetchMeals().then((meals) => {
+    (async () => {
+      const meals = await fetchMeals();
       dispatchModel({
         action: 'SET_MEALS',
         mealsToSet: !meals
           ? []
           : Object.entries(meals).map(([key, value]) => ({ ...value, id: key }))
       });
-    });
+    })();
   }, [fetchMeals]);
 
   const { selectedListKeys } = model;
@@ -57,7 +58,7 @@ export const FoodApplicationContextProvider = ({ children }) => {
           action: 'SET_MEALS',
           mealsToSet: model.meals
         });
-      }, 2520)
+      }, 2520);
 
       return {
         order,

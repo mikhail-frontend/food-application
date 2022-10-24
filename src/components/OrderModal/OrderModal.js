@@ -56,7 +56,7 @@ const OrderModalContent = ({ onSetIsModal = () => {} }) => {
       setError(e.message || 'Something went wrong');
     }
     setIsSent(true);
-    setTimeout(() => onSetIsModal(false), 2500)
+    setTimeout(() => onSetIsModal(false), 2500);
   };
 
   const text = <h1 style={{ color: 'red' }}>Thank you, {userName}, your order will come soon </h1>;
