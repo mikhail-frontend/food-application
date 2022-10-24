@@ -1,5 +1,5 @@
-import React from "react";
-import styles from "./MealsSummary.module.scss";
+import React from 'react';
+import styles from './MealsSummary.module.scss';
 const MealsSummary = () => {
   return (
     <section className={styles.summary}>

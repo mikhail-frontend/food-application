@@ -1,6 +1,6 @@
-import styles from "./Header.module.scss";
-import HeaderCartButton from "./HeaderCartButton/HeaderCartButton";
-import MainImage from "../../../assets/img/meals.jpeg";
+import styles from './Header.module.scss';
+import HeaderCartButton from './HeaderCartButton/HeaderCartButton';
+import MainImage from '../../../assets/img/meals.jpeg';
 const Header = () => {
   return (
     <>
@@ -8,7 +8,7 @@ const Header = () => {
         <h1>React Meals</h1>
         <HeaderCartButton />
       </header>
-      <div className={styles["main-image"]}>
+      <div className={styles['main-image']}>
         <img src={MainImage} alt="Delicious food. Choice ReactMeals!" />
       </div>
     </>

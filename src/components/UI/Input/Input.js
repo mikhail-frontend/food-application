@@ -1,10 +1,10 @@
-import { forwardRef, useRef, useImperativeHandle } from "react";
-import styles from "./Input.module.scss";
+import { forwardRef, useRef, useImperativeHandle } from 'react';
+import styles from './Input.module.scss';
 
 // eslint-disable-next-line react/display-name
 const Input = forwardRef(
   (
-    { className = "", id = "0", label = "", value = "", changeHandler = () => {}, ...htmlProps },
+    { className = '', id = '0', label = '', value = '', changeHandler = () => {}, ...htmlProps },
     ref
   ) => {
     const inputRef = useRef();
@@ -20,12 +20,12 @@ const Input = forwardRef(
       <div className={`${styles.input} ${className}`}>
         {label && <label htmlFor={id}>{label}</label>}
         <input
-          type={htmlProps.type || "text"}
+          type={htmlProps.type || 'text'}
           id={id}
           value={value}
           ref={inputRef}
-          onInput={(event) => changeHandler(event.target.value, id, "input")}
-          onBlur={(event) => changeHandler(event.target.value, id, "blur")}
+          onInput={(event) => changeHandler(event.target.value, id, 'input')}
+          onBlur={(event) => changeHandler(event.target.value, id, 'blur')}
           {...htmlProps}
         />
       </div>

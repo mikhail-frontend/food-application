@@ -1,17 +1,17 @@
-import styles from "./OrderModaltem.module.scss";
+import styles from './OrderModaltem.module.scss';
 
 const OrderModalItem = ({
   price = 0,
-  name = "",
+  name = '',
   amount = 0,
   onCountChange = () => {},
-  id = "m0",
-  className = ""
+  id = 'm0',
+  className = ''
 }) => {
   const fixedPrice = `$${price.toFixed(2)}`;
 
   return (
-    <li className={`${styles["order-modal-item"]} ${className}`}>
+    <li className={`${styles['order-modal-item']} ${className}`}>
       <div>
         <h2>{name}</h2>
         <div className={styles.summary}>
@@ -20,8 +20,8 @@ const OrderModalItem = ({
         </div>
       </div>
       <div className={styles.actions}>
-        <button onClick={() => onCountChange(id, "minus")}>−</button>
-        <button onClick={() => onCountChange(id, "plus")}>+</button>
+        <button onClick={() => onCountChange(id, 'minus')}>−</button>
+        <button onClick={() => onCountChange(id, 'plus')}>+</button>
       </div>
     </li>
   );

@@ -1,9 +1,9 @@
-import { useContext } from "react";
-import FoodApplicationContext from "../../../store/food-application";
-import styles from "./MealItem.module.scss";
-import MealItemForm from "../MealItemForm/MealItemForm";
+import { useContext } from 'react';
+import FoodApplicationContext from '../../../store/food-application';
+import styles from './MealItem.module.scss';
+import MealItemForm from '../MealItemForm/MealItemForm';
 
-const MealItem = ({ name = "", description = "", price = 0, id = "" }) => {
+const MealItem = ({ name = '', description = '', price = 0, id = '' }) => {
   const { dispatchModel } = useContext(FoodApplicationContext);
   const onAddItem = (count) => {
     dispatchModel({ count, id });

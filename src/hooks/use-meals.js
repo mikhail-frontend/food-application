@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState } from 'react';
 
 const useMeals = (request) => {
   const [loading, setLoading] = useState(true);

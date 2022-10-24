@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import "./Input.css";
+import './Input.css';
 
 const ModalFormInput = (props) => {
   const { label, type, name, handleChange, errorMessage, isValid, value } = props;

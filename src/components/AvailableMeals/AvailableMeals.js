@@ -1,10 +1,10 @@
-import { useContext } from "react";
-import FoodApplicationContext from "../../store/food-application";
-import Card from "../UI/Card/Card";
-import MealItem from "./MealItem/MealItem";
-import Loader from "../UI/Loader/Loader";
-import styles from "./AvailableMeals.module.scss";
-import ErrorBoundary from "../ErrorBoundaries/ErrorBoundary";
+import { useContext } from 'react';
+import FoodApplicationContext from '../../store/food-application';
+import Card from '../UI/Card/Card';
+import MealItem from './MealItem/MealItem';
+import Loader from '../UI/Loader/Loader';
+import styles from './AvailableMeals.module.scss';
+import ErrorBoundary from '../ErrorBoundaries/ErrorBoundary';
 
 const MealsList = () => {
   const {
@@ -28,9 +28,9 @@ const AvailableMeals = () => {
         {!loading && !error && <MealsList />}
         {error && (
           <Card>
-            <p style={{ color: "red", fontSize: "2rem" }}>
-              {" "}
-              {error ? error : "Something went wrong"}{" "}
+            <p style={{ color: 'red', fontSize: '2rem' }}>
+              {' '}
+              {error ? error : 'Something went wrong'}{' '}
             </p>
           </Card>
         )}

@@ -1,6 +1,6 @@
-import styles from "./MealItemForm.module.scss";
-import Input from "../../UI/Input/Input";
-import { useState } from "react";
+import styles from './MealItemForm.module.scss';
+import Input from '../../UI/Input/Input';
+import { useState } from 'react';
 
 const MealItemForm = ({ onAddItem }) => {
   const [count, setCount] = useState(1);

@@ -1,7 +1,7 @@
-import React from "react";
-import Input from "../components/UI/Input/Input";
+import React from 'react';
+import Input from '../components/UI/Input/Input';
 
-import { requiredRule, minLengthRule, maxLengthRule, passwordMatchRule } from "./validations";
+import { requiredRule, minLengthRule, maxLengthRule, passwordMatchRule } from './validations';
 
 /**
  * creates and returns object representation of form field
@@ -11,7 +11,7 @@ import { requiredRule, minLengthRule, maxLengthRule, passwordMatchRule } from ".
  * @param {string} type - input type
  * @param {string} defaultValue - default value for the input
  */
-function createFormFieldConfig(label, name, type, defaultValue = "") {
+function createFormFieldConfig(label, name, type, defaultValue = '') {
   return {
     renderInput: (handleChange, value, isValid, error, key) => {
       return (
@@ -30,7 +30,7 @@ function createFormFieldConfig(label, name, type, defaultValue = "") {
     label,
     value: defaultValue,
     valid: false,
-    errorMessage: "",
+    errorMessage: '',
     touched: false
   };
 }
@@ -38,23 +38,23 @@ function createFormFieldConfig(label, name, type, defaultValue = "") {
 // object representation of signup form
 export const signupForm = {
   name: {
-    ...createFormFieldConfig("Full Name", "name", "text"),
-    validationRules: [requiredRule("name"), minLengthRule("name", 3), maxLengthRule("name", 25)]
+    ...createFormFieldConfig('Full Name', 'name', 'text'),
+    validationRules: [requiredRule('name'), minLengthRule('name', 3), maxLengthRule('name', 25)]
   },
   email: {
-    ...createFormFieldConfig("Email", "email", "email"),
-    validationRules: [requiredRule("email"), minLengthRule("email", 10), maxLengthRule("email", 25)]
+    ...createFormFieldConfig('Email', 'email', 'email'),
+    validationRules: [requiredRule('email'), minLengthRule('email', 10), maxLengthRule('email', 25)]
   },
   password: {
-    ...createFormFieldConfig("Password", "password", "password"),
+    ...createFormFieldConfig('Password', 'password', 'password'),
     validationRules: [
-      requiredRule("password"),
-      minLengthRule("password", 8),
-      maxLengthRule("password", 20)
+      requiredRule('password'),
+      minLengthRule('password', 8),
+      maxLengthRule('password', 20)
     ]
   },
   confirmPassword: {
-    ...createFormFieldConfig("Confirm Password", "confirmPassword", "password"),
+    ...createFormFieldConfig('Confirm Password', 'confirmPassword', 'password'),
     validationRules: [passwordMatchRule()]
   }
 };

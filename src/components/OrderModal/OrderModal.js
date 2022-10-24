@@ -1,9 +1,10 @@
-import { useContext } from "react";
-import FoodApplicationContext from "../../store/food-application";
-import styles from "./OrderModal.module.scss";
-import Modal from "../UI/Modal/Modal";
-import OrderModalItem from "./OrderModalItem/OrderModalItem";
-import Card from "../UI/Card/Card";
+import { useContext } from 'react';
+import FoodApplicationContext from '../../store/food-application';
+import styles from './OrderModal.module.scss';
+import Modal from '../UI/Modal/Modal';
+import OrderModalItem from './OrderModalItem/OrderModalItem';
+import ModalForm from './ModalForm/ModalForm';
+import Card from '../UI/Card/Card';
 
 const OrderModalList = () => {
   const {
@@ -16,7 +17,7 @@ const OrderModalList = () => {
   };
 
   return (
-    <ul className={styles["order-modal-items"]}>
+    <ul className={styles['order-modal-items']}>
       {selectedItems.map(({ id, amount, name, price }) => {
         return (
           <OrderModalItem
@@ -62,7 +63,7 @@ const OrderModalContent = ({ onSetIsModal = () => {} }) => {
 
 const NoData = ({ onSetIsModal = () => {} }) => {
   return (
-    <Card className={styles["no-data"]}>
+    <Card className={styles['no-data']}>
       Unfortunately, you did not order anything :( <br />
       <button className={styles.button} onClick={() => onSetIsModal(false)}>
         Order meal
@@ -80,6 +81,7 @@ const OrderModal = ({ onSetIsModal }) => {
   );
   return (
     <Modal onHideModal={() => onSetIsModal(false)}>
+      <ModalForm />
       {isExistSelected && <OrderModalContent onSetIsModal={onSetIsModal} />}
       {!isExistSelected && <NoData onSetIsModal={onSetIsModal} />}
     </Modal>

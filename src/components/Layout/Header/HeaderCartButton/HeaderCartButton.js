@@ -1,10 +1,10 @@
-import { useContext, useState } from "react";
+import { useContext, useState } from 'react';
 
-import FoodApplicationContext from "../../../../store/food-application";
-import OrderModal from "../../../OrderModal/OrderModal";
-import CartIcon from "./CartIcon";
-import styles from "./HeaderCartButton.module.scss";
-import { useEffect } from "react";
+import FoodApplicationContext from '../../../../store/food-application';
+import OrderModal from '../../../OrderModal/OrderModal';
+import CartIcon from './CartIcon';
+import styles from './HeaderCartButton.module.scss';
+import { useEffect } from 'react';
 
 const HeaderCartButton = () => {
   const {
@@ -30,7 +30,7 @@ const HeaderCartButton = () => {
         Your Cart
         <span className={styles.badge}>{selectedGoodsCount}</span>
       </button>
-      {isModal ? <OrderModal onSetIsModal={(payload) => setIsModal(payload)} /> : ""}
+      {isModal ? <OrderModal onSetIsModal={(payload) => setIsModal(payload)} /> : ''}
     </>
   );
 };

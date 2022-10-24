@@ -1,7 +1,7 @@
-import { createContext, useReducer, useCallback, useEffect } from "react";
-import { buildModel, modelReducer, scheme } from "../helpers/ordered-meals";
-import { getMeals } from "../API";
-import useMeals from "../hooks/use-meals";
+import { createContext, useReducer, useCallback, useEffect } from 'react';
+import { buildModel, modelReducer, scheme } from '../helpers/ordered-meals';
+import { getMeals } from '../API';
+import useMeals from '../hooks/use-meals';
 
 const FoodApplicationContext = createContext({
   model: scheme,
@@ -19,7 +19,7 @@ export const FoodApplicationContextProvider = ({ children }) => {
   useEffect(() => {
     fetchMeals().then((meals) => {
       dispatchModel({
-        action: "SET_MEALS",
+        action: 'SET_MEALS',
         mealsToSet: !meals
           ? []
           : Object.entries(meals).map(([key, value]) => ({ ...value, id: key }))

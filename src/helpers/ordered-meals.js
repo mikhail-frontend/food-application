@@ -14,14 +14,14 @@ export const buildModel = (meals) => {
   return { ...scheme, selectedListKeys, meals };
 };
 
-export const modelReducer = (state, { id = "0", count = 0, action = "plus", mealsToSet = [] }) => {
-  if (action === "SET_MEALS") {
+export const modelReducer = (state, { id = '0', count = 0, action = 'plus', mealsToSet = [] }) => {
+  if (action === 'SET_MEALS') {
     return { ...buildModel(mealsToSet), meals: mealsToSet };
   }
   const { selectedListKeys: selectedListKeysOld, meals } = state;
   const selectedListKeys = {
     ...selectedListKeysOld,
-    [id]: action === "plus" ? selectedListKeysOld[id] + count : selectedListKeysOld[id] - count
+    [id]: action === 'plus' ? selectedListKeysOld[id] + count : selectedListKeysOld[id] - count
   };
 
   const selectedKeys = Object.entries(selectedListKeys)
