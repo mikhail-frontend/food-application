@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from 'react';
 
-import FoodApplicationContext from '../../../../store/food-application';
+import FoodApplicationContext from '../../../../context/food-application';
 import OrderModal from '../../../OrderModal/OrderModal';
 import CartIcon from './CartIcon';
 import styles from './HeaderCartButton.module.scss';

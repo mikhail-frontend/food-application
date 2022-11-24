@@ -1,4 +1,5 @@
 import { createContext, useCallback, useEffect, useReducer, useState } from 'react';
+import {createMealOrder} from "../API";
 import { buildModel, modelReducer, scheme } from '../helpers/ordered-meals';
 import { getMeals } from '../API';
 import useMeals from '../hooks/use-meals';
@@ -42,17 +43,10 @@ export const FoodApplicationContextProvider = ({ children }) => {
           return acc;
         }, {});
       const personalData = values;
-      const response = await fetch('https://httpbin.org/post', {
-        method: 'POST',
-        body: JSON.stringify({
-          order,
-          personalData
-        }),
-        headers: {
-          'Content-Type': 'application/json'
-        }
+      const responseData = await createMealOrder({
+        order,
+        personalData
       });
-      const responseData = await response.json();
       setTimeout(() => {
         dispatchModel({
           action: 'SET_MEALS',

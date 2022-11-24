@@ -1,5 +1,5 @@
 import { useContext, useRef, useState } from 'react';
-import FoodApplicationContext from '../../store/food-application';
+import FoodApplicationContext from '../../context/food-application';
 import styles from './OrderModal.module.scss';
 import Modal from '../UI/Modal/Modal';
 import OrderModalItem from './OrderModalItem/OrderModalItem';

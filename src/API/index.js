@@ -10,10 +10,10 @@ export const getMeals = async () => {
   }
   return await response.json();
 };
-export const addMeal = async (meal) => {
-  const response = await fetch('https://food-order-19eee-default-rtdb.firebaseio.com/meals.json', {
+export const createMealOrder = async (order) => {
+  const response = await fetch('https://food-order-19eee-default-rtdb.firebaseio.com/orders.json', {
     method: 'POST',
-    body: JSON.stringify(meal),
+    body: JSON.stringify(order),
     headers: {
       'Content-Type': 'application/json'
     }

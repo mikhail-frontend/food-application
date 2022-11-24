@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import FoodApplicationContext from '../../store/food-application';
+import FoodApplicationContext from '../../context/food-application';
 import Card from '../UI/Card/Card';
 import MealItem from './MealItem/MealItem';
 import Loader from '../UI/Loader/Loader';

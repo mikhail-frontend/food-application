@@ -3,7 +3,7 @@ import React, { forwardRef, useImperativeHandle, useContext, useEffect } from 'r
 import useForm from '../../../hooks/use-form';
 import { signupForm } from '../../../helpers/formConfig';
 import styles from './SignupForm.module.scss';
-import FoodApplicationContext from '../../../store/food-application';
+import FoodApplicationContext from '../../../context/food-application';
 
 // eslint-disable-next-line react/display-name
 const ModalForm = forwardRef((props, ref) => {
