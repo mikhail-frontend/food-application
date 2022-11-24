@@ -1,16 +1,17 @@
 import styles from './Header.module.scss';
 import HeaderCartButton from './HeaderCartButton/HeaderCartButton';
-import MainImage from '../../../assets/img/meals.jpeg';
+import {Link} from "react-router-dom";
+
 const Header = () => {
   return (
     <>
       <header className={styles.header}>
-        <h1>React Meals</h1>
+        <Link to='/' className={styles['main-link']}>
+          <h1>React Meals</h1>
+        </Link>
         <HeaderCartButton />
       </header>
-      <div className={styles['main-image']}>
-        <img src={MainImage} alt="Delicious food. Choice ReactMeals!" />
-      </div>
+
     </>
   );
 };

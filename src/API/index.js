@@ -21,5 +21,5 @@ export const createMealOrder = async (order) => {
   if (!response.ok) {
     throw new Error('Something went wrong');
   }
-  await response.json();
+  return await response.json();
 };

@@ -1,8 +1,7 @@
-import { createContext, useCallback, useEffect, useReducer, useState } from 'react';
-import {createMealOrder} from "../API";
-import { buildModel, modelReducer, scheme } from '../helpers/ordered-meals';
-import { getMeals } from '../API';
-import useMeals from '../hooks/use-meals';
+import { createContext, useCallback, useEffect, useReducer, useState } from "react";
+import { createMealOrder, getMeals } from "../API";
+import { buildModel, modelReducer, scheme } from "../helpers/ordered-meals";
+import useMeals from "../hooks/use-meals";
 
 const FoodApplicationContext = createContext({
   model: scheme,
@@ -11,7 +10,8 @@ const FoodApplicationContext = createContext({
   error: null,
   loading: false,
   isFormFilled: false,
-  setIsFormFilled: () => {}
+  setIsFormFilled: () => {
+  }
 });
 
 export const FoodApplicationContextProvider = ({ children }) => {
@@ -43,21 +43,20 @@ export const FoodApplicationContextProvider = ({ children }) => {
           return acc;
         }, {});
       const personalData = values;
-      const responseData = await createMealOrder({
+      await createMealOrder({
         order,
         personalData
       });
-      setTimeout(() => {
-        dispatchModel({
-          action: 'SET_MEALS',
-          mealsToSet: model.meals
-        });
-      }, 2520);
+      // setTimeout(() => {
+      //   dispatchModel({
+      //     action: 'SET_MEALS',
+      //     mealsToSet: model.meals
+      //   });
+      // }, 2520);
 
       return {
         order,
-        personalData,
-        responseData: JSON.parse(responseData.data)
+        personalData
       };
     },
     [selectedListKeys]

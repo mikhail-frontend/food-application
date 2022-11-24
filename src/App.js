@@ -1,16 +1,30 @@
-import './assets/globalStyles/App.scss';
+import React, {Suspense} from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import IndexLayout from "./components/Layout";
+import "./assets/globalStyles/App.scss";
 
-import Header from './components/Layout/Header/Header';
-import MealsSummary from './components/Layout/MealsSummary/MealsSummury';
-import AvailableMeals from './components/AvailableMeals/AvailableMeals';
+const IndexPage = React.lazy(() => import('./pages/IndexPage'))
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <IndexLayout />,
+    children: [
+      {
+        index: true,
+        element: <Suspense fallback={<p>loading </p>}><IndexPage /></Suspense>
+      },
+      {
+        path: '*',
+        element: ''
+      }
+    ]
+  }
+]);
+
 
 const App = () => {
   return (
-    <>
-      <Header />
-      <MealsSummary />
-      <AvailableMeals />
-    </>
+    <RouterProvider router={router}/>
   );
 };
 
